@@ -14,7 +14,7 @@
     <Description>A C# commons library by Finaps.</Description>
     <PackageTags>dotnet-commons;finaps</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
