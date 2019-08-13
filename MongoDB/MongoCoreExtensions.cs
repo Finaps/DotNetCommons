@@ -7,7 +7,7 @@ using MongoDB.Driver.Linq;
 
 namespace Finaps.Commons.MongoDB
 {
-  public static class AspCoreExtensions
+  public static class MongoExtensions
   {
     private static async Task<PaginatedResponse<T>> AsPaginatedResponse<T>(IMongoQueryable<T> workflows, int limit, int offset)
     {
