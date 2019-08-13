@@ -4,6 +4,7 @@
     <ProjectReference Include="..\Logging\Logging.csproj" />
     <ProjectReference Include="..\MongoDB\MongoDB.csproj" />
     <ProjectReference Include="..\AspNetCore\AspNetCore.csproj" />
+    <ProjectReference Include="..\FileStorage\FileStorage.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

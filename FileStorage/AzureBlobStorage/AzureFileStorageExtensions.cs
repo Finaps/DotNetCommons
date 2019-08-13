@@ -2,7 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace InvoiceUploadService.API.Infrastructure.FileStorage
+namespace Finaps.Commons.FileStorage.AzureFileStorage
 {
   public static class AzureFileStorageExtensions
   {

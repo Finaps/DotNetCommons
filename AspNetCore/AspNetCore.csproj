@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-  <PackageId>Finaps.Commons.AspCore</PackageId>
+  <PackageId>Finaps.Commons.AspNetCore</PackageId>
     <Title>Finaps ASP.NET AspNet Commons</Title>
     <Authors>Simon Martyr;Thomas Poiesz;Andrew Hagens</Authors>
     <Company>Finaps B.V.</Company>

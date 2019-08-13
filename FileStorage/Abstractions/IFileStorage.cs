@@ -1,7 +1,6 @@
 using System.IO;
 using System.Threading.Tasks;
-//TODO Extract this out to a package
-namespace InvoiceUploadService.API.Infrastructure.FileStorage
+namespace Finaps.Commons.FileStorage
 {
   public interface IFileStorage
   {

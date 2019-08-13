@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 
-namespace InvoiceUploadService.API.Infrastructure.FileStorage
+namespace Finaps.Commons.FileStorage.AzureFileStorage
 {
   public class AzureFileStorage : IFileStorage
   {

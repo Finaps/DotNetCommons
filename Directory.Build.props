@@ -6,6 +6,11 @@
   <PropertyGroup>
     <!-- edit this value to change the current MAJOR.MINOR version -->
     <VersionPrefix>0.9</VersionPrefix>
+    <Authors>Simon Martyr;Thomas Poiesz;Andrew Hagens</Authors>
+    <Company>Finaps B.V.</Company>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
  
   <Choose>

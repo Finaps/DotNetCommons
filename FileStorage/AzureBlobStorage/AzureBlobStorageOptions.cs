@@ -1,4 +1,4 @@
-namespace InvoiceUploadService.API.Infrastructure.FileStorage
+namespace Finaps.Commons.FileStorage.AzureFileStorage
 {
   public class AzureBlobStorageOptions
   {
