@@ -4,9 +4,9 @@ using Serilog;
 
 namespace Finaps.Commons.Logging
 {
-  public class SerilogDependencyInjectionExtensions
+  public static class SerilogDependencyInjectionExtensions
   {
-    private static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
+    public static Serilog.ILogger CreateSerilogLogger(this IConfiguration configuration)
     {
       var seqServerUrl = configuration["Serilog:SeqServerUrl"];
       var logstashUrl = configuration["Serilog:LogstashUrl"];
