@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore", "AspNetCore\As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage", "FileStorage\FileStorage.csproj", "{C226598B-0A51-4AB2-9B2F-D613E0BF9D85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch", "Elasticsearch\Elasticsearch.csproj", "{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{C226598B-0A51-4AB2-9B2F-D613E0BF9D85}.Release|x64.Build.0 = Release|Any CPU
 		{C226598B-0A51-4AB2-9B2F-D613E0BF9D85}.Release|x86.ActiveCfg = Release|Any CPU
 		{C226598B-0A51-4AB2-9B2F-D613E0BF9D85}.Release|x86.Build.0 = Release|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Debug|x64.Build.0 = Debug|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Debug|x86.Build.0 = Debug|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Release|x64.ActiveCfg = Release|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Release|x64.Build.0 = Release|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Release|x86.ActiveCfg = Release|Any CPU
+		{B7A86937-0D0B-4BE2-8B22-B5E64EA7B75B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
