@@ -9,6 +9,7 @@ using MongoDB.Driver.Linq;
 
 namespace Finaps.Commons.MongoDB
 {
+  [Obsolete("IDatabase is deprecated. Please use the Mongo Driver methods.")]
   public interface IDatabase<T>
   {
     IMongoQueryable<T> AsQueryable();

@@ -1,17 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>Finaps.Commons.Serilog</PackageId>
+    <PackageId>Finaps.Commons.Logging</PackageId>
     <Title>Finaps ASP.NET Logging Commons</Title>
     <Authors>Simon Martyr;Thomas Poiesz;Andrew Hagens</Authors>
     <Company>Finaps B.V.</Company>
-    <Description>A commons library for Using Serilog.</Description>
-    <PackageTags>dotnet-new;templates;finaps</PackageTags>
+    <Description>A Logging commons .</Description>
+    <PackageTags>dotnet-logging;finaps</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
-
-    <IncludeContentInPack>true</IncludeContentInPack>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
-    <ContentTargetFolders>content</ContentTargetFolders>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>

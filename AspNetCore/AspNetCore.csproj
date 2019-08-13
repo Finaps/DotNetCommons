@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+  <PackageId>Finaps.Commons.AspNetCore</PackageId>
+    <Title>Finaps ASP.NET AspNet Commons</Title>
+    <Authors>Simon Martyr;Thomas Poiesz;Andrew Hagens</Authors>
+    <Company>Finaps B.V.</Company>
+    <Description>A commons library for AspNet by Finaps.</Description>
+    <PackageTags>dotnet-commons;finaps</PackageTags>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

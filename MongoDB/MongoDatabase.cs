@@ -9,6 +9,7 @@ using MongoDB.Driver.Linq;
 
 namespace Finaps.Commons.MongoDB
 {
+  [Obsolete("MongoDatabase is deprecated. Please use the Mongo Driver methods.")]
   public class MongoDatabase<T> : IDatabase<T> where T : IMongoModel
   {
     private readonly MongoClient client;

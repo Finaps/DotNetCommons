@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Logging\Logging.csproj" />
+    <ProjectReference Include="..\MongoDB\MongoDB.csproj" />
+    <ProjectReference Include="..\AspNetCore\AspNetCore.csproj" />
+    <ProjectReference Include="..\FileStorage\FileStorage.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <PackageId>Finaps.Commons</PackageId>
+    <Title>Finaps ASP.NET Commons</Title>
+    <Authors>Simon Martyr;Thomas Poiesz;Andrew Hagens</Authors>
+    <Company>Finaps B.V.</Company>
+    <Description>A C# commons library by Finaps.</Description>
+    <PackageTags>dotnet-commons;finaps</PackageTags>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+</Project>

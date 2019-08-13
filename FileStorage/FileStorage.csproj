@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>Finaps.Commons.MongoDB</PackageId>
-    <Title>Finaps ASP.NET MongoDB Commons</Title>
+    <PackageId>Finaps.Commons.FileStorage</PackageId>
+    <Title>Finaps ASP.NET File Storage Commons</Title>
     <Authors>Simon Martyr;Thomas Poiesz;Andrew Hagens</Authors>
     <Company>Finaps B.V.</Company>
-    <Description>A commons library for MongoDB by Finaps.</Description>
-    <PackageTags>dotnet-mongo;finaps</PackageTags>
+    <Description>A File Storage commons.</Description>
+    <PackageTags>dotnet-file;finaps</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
@@ -14,11 +14,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\AspNetCore\AspNetCore.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 
 </Project>
