@@ -11,7 +11,7 @@ It is possible to supply this function with a `MongoOptions` object specifying t
 To use a collection for a certain type in your application, add the following line to your `Startup.cs`:
 
 ```csharp
-services.UseMongoDBCollection<T>
+services.UseMongoDBCollection<T>();
 ```
 
 Where T must implement `IMongoModel`. You can then use an `IMongoCollection<T>` as a dependency in your repository.
