@@ -9,7 +9,7 @@ namespace Finaps.Commons.MongoDB
 {
   public static class MongoExtensions
   {
-    private static async Task<PaginatedResponse<T>> AsPaginatedResponse<T>(IMongoQueryable<T> workflows, int limit, int offset)
+    public static async Task<PaginatedResponse<T>> AsPaginatedResponse<T>(this IMongoQueryable<T> workflows, int limit, int offset)
     {
       var data = new List<T>();
       if (limit > 0)
@@ -18,6 +18,11 @@ namespace Finaps.Commons.MongoDB
       }
       var count = await workflows.CountAsync();
       return PaginatedResponse<T>.Create(data, limit, offset, count);
+    }
+
+    public static FilterDefinition<T> IdFilter<T>(T obj) where T : IMongoModel
+    {
+      return Builders<T>.Filter.Eq(x => x.Id, obj.Id);
     }
   }
 }

@@ -1,24 +1,15 @@
-using System;
 using MongoDB.Driver;
 
 namespace Finaps.Commons.MongoDB
 {
   public class MongoConnection
   {
-    public MongoClient client;
-    public IMongoDatabase database;
-    public MongoConnection()
+    public MongoClient Client { get; private set; }
+    public IMongoDatabase Database { get; private set; }
+    public MongoConnection(string connectionString, string databaseName)
     {
-      Connect();
-    }
-
-    private void Connect()
-    {
-      string connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRING");
-      string databaseName = Environment.GetEnvironmentVariable("DATABASE_NAME");
-
-      client = new MongoClient(connectionString);
-      database = client.GetDatabase(databaseName);
+      Client = new MongoClient(connectionString);
+      Database = Client.GetDatabase(databaseName);
     }
   }
 }
