@@ -30,7 +30,7 @@ IMongoQueryable<T> queryable = collection.AsQueryable();
 This object allows you to retrieve objects from the database using Linq methods. For example:
 
 ```csharp
-async Task<T> GetById(Guid id) 
+async Task<T> GetById(Guid id)
 {
   return await queryable.SingleOrDefaultAsync(t => t.Id == id);
 }
@@ -38,11 +38,27 @@ async Task<T> GetById(Guid id)
 
 ### IdFilter
 
-A situation that often comes up when writing your repository is where you need to update or delete an existing object based on its id. The MongoCollection methods require you to specify a filter for this. A pre-made filter for finding an object based on its `Id` attribute can be retrieved by running `IdFilter<T>` where T must implement `IMongoModel`.
+A situation that often comes up when writing your repository is where you need to update or delete an existing object based on its id. The MongoCollection methods require you to specify a filter for this. A pre-made filter for finding an object based on its `Id` attribute can be retrieved by using the `MongoUtilities.IdFilter<T>()` function. Some examples:
+
+```csharp
+void Update(T obj)
+{
+  var idFilter = MongoUtilities.IdFilter(T obj);
+  mongoCollection.ReplaceOne(idFilter, obj);
+}
+
+void Delete(Guid id)
+{
+  var idFilter = MongoUtilities.IdFilter<T>(id);
+  mongoCollection.DeleteOne(idFilter);
+}
+```
+
+Where T must implement `IMongoModel`.
 
 ### Paginated responses
 
-If you want to return a queryable as a paginated object it is possible to use the `AsPaginatedResponse<T>` function:
+If you want to return an `IMongoQueryable<T>` as a paginated object it is possible to use the `AsPaginatedResponse<T>` function:
 
 ```csharp
 var filteredQuery = queryable.Where(t => ...);
