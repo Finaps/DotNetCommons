@@ -27,5 +27,11 @@ namespace Finaps.Commons.AspNetCore.Extensions
       var data = await Task.WhenAll(original.Data.Select(mapper));
       return Create(data, original.Limit, original.Offset, original.Total);
     }
+
+    public static PaginatedResponse<T> CreateFrom<FT>(PaginatedResponse<FT> original, Func<FT, T> mapper)
+    {
+      var data = original.Data.Select(mapper).ToList();
+      return Create(data, original.Limit, original.Offset, original.Total);
+    }
   }
 }
