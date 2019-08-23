@@ -12,16 +12,10 @@ namespace Finaps.Commons.MongoDB
   [Obsolete("MongoDatabase is deprecated. Please use the Mongo Driver methods.")]
   public class MongoDatabase<T> : IDatabase<T> where T : IMongoModel
   {
-    private readonly MongoClient client;
-    private readonly IMongoDatabase database;
     private readonly IMongoCollection<T> collection;
-    private readonly MongoConnection connection;
     public MongoDatabase(MongoConnection connection, string collectionName)
     {
-      this.connection = connection;
-      database = connection.database;
-      client = connection.client;
-      collection = database.GetCollection<T>(collectionName);
+      collection = connection.Database.GetCollection<T>(collectionName);
     }
 
     public T InsertItem(T obj, CancellationToken cancellationToken = default(CancellationToken))
