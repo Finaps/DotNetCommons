@@ -1,0 +1,35 @@
+{
+  "folders": [{
+      "name": "Asp.Net Core Utils",
+      "path": "AspNetCore"
+    },
+    {
+      "name": "Asp.Net Core Utils Tests",
+      "path": "AspNetCore.Tests"
+    },
+    {
+      "name": "Common Utils",
+      "path": "Commons"
+    },
+    {
+      "name": "ElasticSearch",
+      "path": "Elasticsearch"
+    },
+    {
+      "name": "FileStorage",
+      "path": "FileStorage"
+    },
+    {
+      "name": "Logging",
+      "path": "Logging"
+    },
+    {
+      "name": "MongoDB",
+      "path": "MongoDB"
+    },
+    {
+      "name": ".Net Commons Solution",
+      "path": "."
+    }
+  ]
+}
