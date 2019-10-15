@@ -3,24 +3,24 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 
-namespace Finaps.Commons.Elasticsearch.DependencyInjection
+namespace Finaps.Commons.ElasticSearch.DependencyInjection
 {
-  public static class ElasticsearchExtensions
+  public static class ElasticSearchExtensions
   {
 
     public static void AddElasticsearch(
         this IServiceCollection services, string url)
     {
-      services.AddSingleton<IElasticsearchClient>(sp =>
+      services.AddSingleton<IElasticSearchClient>(sp =>
       {
-        var logger = sp.GetRequiredService<ILogger<ElasticsearchClient>>();
-        return new ElasticsearchClient(logger, url);
+        var logger = sp.GetRequiredService<ILogger<ElasticSearchClient>>();
+        return new ElasticSearchClient(logger, url);
       });
     }
 
     public static void AddElasticsearchIndex<T>(this IApplicationBuilder app, string indexName = null) where T : class
     {
-      var client = app.ApplicationServices.GetRequiredService<IElasticsearchClient>();
+      var client = app.ApplicationServices.GetRequiredService<IElasticSearchClient>();
       client.AddIndex<T>();
     }
   }

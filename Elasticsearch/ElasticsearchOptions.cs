@@ -1,4 +1,4 @@
-namespace Finaps.Commons.Elasticsearch
+namespace Finaps.Commons.ElasticSearch
 {
   public class ElasticSearchOptions
   {

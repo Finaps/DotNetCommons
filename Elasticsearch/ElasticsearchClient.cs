@@ -3,16 +3,16 @@ using Elasticsearch.Net;
 using Microsoft.Extensions.Logging;
 using Nest;
 
-namespace Finaps.Commons.Elasticsearch
+namespace Finaps.Commons.ElasticSearch
 {
-  public class ElasticsearchClient : IElasticsearchClient
+  public class ElasticSearchClient : IElasticSearchClient
   {
     private IElasticClient _client;
     private readonly ILogger _logger;
 
     public IElasticClient Client => _client;
 
-    public ElasticsearchClient(ILogger<ElasticsearchClient> logger, string url)
+    public ElasticSearchClient(ILogger<ElasticSearchClient> logger, string url)
     {
       _logger = logger;
       InitializeClient(url);
@@ -26,22 +26,29 @@ namespace Finaps.Commons.Elasticsearch
       _client = new ElasticClient(settings);
       _logger.LogInformation($"Successfully created connection to Elastic Search");
     }
-    public void AddIndex<T>(string indexName = null) where T : class
+    public ElasticSearchResponse AddIndex<T>(string indexName = null) where T : class
     {
       indexName = indexName ?? GetTypeIndexName(typeof(T));
-      if (!_client.Indices.Exists(indexName).Exists)
+      var existsResponse = _client.Indices.Exists(indexName);
+      if (!existsResponse.IsValid)
       {
-        _client.Indices.Create(indexName, c => c
+        return ConstructResponse(existsResponse, $"Error checking if index {indexName} already exists\n");
+      }
+      if (existsResponse.Exists)
+      {
+        _logger.LogDebug($"Index {indexName} already exists, overriding mapping");
+        var mapResponse = _client.Map<T>(m => m.Index(indexName).AutoMap());
+        return ConstructResponse(mapResponse, $"Error overriding mapping on index {indexName}\n");
+      }
+      else
+      {
+        _logger.LogDebug($"Created index {indexName} for type {typeof(T).Name}");
+        var createIndexResponse = _client.Indices.Create(indexName, c => c
             .Map<T>(x => x
                 .AutoMap<T>()
             )
         );
-        _logger.LogInformation($"Created index {indexName} for type {typeof(T).Name}");
-      }
-      else
-      {
-        _client.Map<T>(m => m.Index(indexName).AutoMap());
-        _logger.LogInformation($"Index {indexName} already exists, overriding mapping");
+        return ConstructResponse(createIndexResponse, $"Error creating index {indexName}\n");
       }
     }
 
@@ -56,25 +63,40 @@ namespace Finaps.Commons.Elasticsearch
       return t.Name.ToLowerInvariant();
     }
 
-    public bool Delete<T>(string id, string indexName = null) where T : class
+    public ElasticSearchResponse Delete<T>(string id, string indexName = null) where T : class
     {
       indexName = indexName ?? GetTypeIndexName(typeof(T));
       _logger.LogDebug("Removing document from index [" + indexName + "] with Id [" + id + "]");
       var deleteResponse = _client.Delete<T>(id, s => s
           .Index(indexName)
       );
-      if (deleteResponse.IsValid) return true;
-      _logger.LogWarning("Error removing object with Id " + id + " from index: " + deleteResponse.Result);
-      return false;
+      return ConstructResponse(deleteResponse, $"Error removing document from index [{indexName}] with id {id}\n");
     }
 
-    public bool Put<T>(T obj, string indexName = null) where T : class
+    public ElasticSearchResponse Put<T>(T obj, string indexName = null) where T : class
     {
       indexName = indexName ?? GetTypeIndexName(typeof(T));
+      _logger.LogTrace($"Indexing object for index [{indexName}]\n");
       var fluentIndexResponse = _client.Index(obj, i => i.Index(indexName));
-      if (fluentIndexResponse.IsValid) return true;
-      _logger.LogWarning("Error writing object to index: " + fluentIndexResponse.Result);
-      return false;
+      return ConstructResponse(fluentIndexResponse, $"Error indexing object for index [{indexName}]\n");
+    }
+
+    private ElasticSearchResponse ConstructResponse(ResponseBase nestResponse, string errorPrefix = "")
+    {
+      if (nestResponse.IsValid)
+      {
+        return ElasticSearchResponse.SuccessResponse();
+      }
+      else
+      {
+        string error = ConstructErrorCause(nestResponse.ServerError.Error);
+        return ElasticSearchResponse.ErrorResponse(error);
+      }
+    }
+
+    private string ConstructErrorCause(Error error, string errorPrefix = "")
+    {
+      return $"{errorPrefix}Reason: {error.Reason}\nCausedBy: {error.CausedBy}\n RootCause: {error.RootCause}";
     }
   }
 }
