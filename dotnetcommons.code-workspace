@@ -16,6 +16,10 @@
       "path": "Elasticsearch"
     },
     {
+      "name": "ElasticSearch Tests",
+      "path": "ElasticSearch.Tests"
+    },
+    {
       "name": "FileStorage",
       "path": "FileStorage"
     },

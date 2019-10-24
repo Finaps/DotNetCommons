@@ -2,6 +2,7 @@ using System;
 using Elasticsearch.Net;
 using Microsoft.Extensions.Logging;
 using Nest;
+using Polly;
 
 namespace Finaps.Commons.ElasticSearch
 {
@@ -24,8 +25,28 @@ namespace Finaps.Commons.ElasticSearch
       var pool = new SingleNodeConnectionPool(new Uri(url));
       var settings = new ConnectionSettings(pool);
       _client = new ElasticClient(settings);
+      CheckConnection();
       _logger.LogInformation($"Successfully created connection to Elastic Search");
     }
+
+    private void CheckConnection()
+    {
+      var policy = Polly.Policy.HandleResult<PingResponse>(r => !r.IsValid)
+              .WaitAndRetry(
+                5,
+                retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                (result, timeSpan, context) =>
+                {
+                  _logger.LogError(result.Result.OriginalException, $"Error connecting to ElasticSearch");
+                }
+              );
+      var response = policy.Execute(() => _client.Ping());
+      if (!response.IsValid)
+      {
+        throw new ElasticSearchException($"Error connecting to ElasticSearch", response.OriginalException);
+      }
+    }
+
     public ElasticSearchResponse AddIndex<T>(string indexName = null) where T : class
     {
       indexName = indexName ?? GetTypeIndexName(typeof(T));
